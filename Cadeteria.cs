@@ -101,15 +101,18 @@ namespace Practico1
 
         public Informe InformePedidosDeJornada(){
             var informe = new Informe();
-            var informeCad = new InformeCadete();
+
             foreach (Cadete cadete in ListadoCadetes)
             {
+                var informeCad = new InformeCadete();
                /* informe.TotalMontos.Add(JornalACobrar(cadete.Id));
                informe.EnviosPromedio.Add(JornalACobrar(cadete.Id));  */
                 informeCad.Nombre = cadete.Nombre;
                 informeCad.Monto = JornalACobrar(cadete.Id);
-                informe.InformeCadetes.Add(InformeCad);
+
+                informe.InformeCadetes.Add(informeCad);
             }
+            return informe;
         }
     }
 }

@@ -12,6 +12,10 @@ namespace Practico1
         public string? Direccion { get => direccion; set => direccion = value; }
         public string? Telefono { get => telefono; set => telefono = value; }
 
+
+        public Cadete(){
+            
+        }
         public Cadete(string[] DatosCadete){
             this.Id = Convert.ToInt32(DatosCadete[0]);
             this.Nombre = DatosCadete[1];

@@ -20,19 +20,15 @@ namespace Practico1
             List<Cadete> ListadoCadetes = new List<Cadete>();
             List<Pedidos> ListadoPedidos = new List<Pedidos>();
         }
-        public Cadeteria(string[]? DatosCadeteria)
-        {
-            this.Nombre = DatosCadeteria?[0];
-            this.Telefono = DatosCadeteria?[1];
-            List<Cadete> ListadoCadetes = new List<Cadete>();
-            List<Pedidos> ListadoPedidos = new List<Pedidos>();
-        }
+       
         private void AgregarPedido(Pedidos NuevoPedido){
             ListadoPedidos?.Add(NuevoPedido);
         }
 
         public void AltaDePedidos(int NroPedido, string? ObsPedido, string? NombreCliente, string? DireccionCliente, string? TelefonoCliente, string? DatosReferenciaDireccionCliente){
-            Pedidos NuevoPedido = new Pedidos(NroPedido, ObsPedido);    
+            Cliente NuevoCliente = new Cliente(NombreCliente, DireccionCliente, TelefonoCliente, DatosReferenciaDireccionCliente);   
+            Pedidos NuevoPedido = new Pedidos(NroPedido, ObsPedido, NuevoCliente);
+            ListadoPedidos?.Add(NuevoPedido);
         }
 
         public void AsignarCadeteAPedido(int IdCadete, int IdPedido){
@@ -41,9 +37,22 @@ namespace Practico1
                 if (IdPedido == Pedido.Nro)
                 {
                     Pedido.IdCadete = IdCadete;
+                    Pedido.Estado = Estados.Asignado;
                 }
             }
             
+        }
+
+        public float JornalACobrar(int IdCadete){
+            float montoACobrar = 0;
+            foreach (Pedidos Pedido in ListadoPedidos)
+            {   
+                if (Pedido.IdCadete == IdCadete && Pedido.Estado == Estados.Entregado)
+                {
+                    montoACobrar+=500;
+                }
+            }
+            return montoACobrar;
         }
 
         /* private Pedidos? BuscarPedido(){
@@ -72,49 +81,25 @@ namespace Practico1
             }
         } */
 
-        /* public void CambiarEstadoDePedido(int IdCadete, int NroPedido){
-            foreach (var Cadete in ListadoCadetes)
+        public void CambiarEstadoDePedido(int NroPedido){
+            foreach (Pedidos Pedido in ListadoPedidos)
             {
-                if (Cadete.Id == IdCadete)
+                if (Pedido.Nro == NroPedido)
                 {
-                    foreach (var pedido in Cadete.ListadoPedidosCadete)
-                    {
-                        if (pedido.Nro == NroPedido)
-                        {
-                            pedido.Estado = Estados.Entregado;
-                        }
-                    }
-                }
-            }
-        } */
-
-        /* public void ReasignarPedido(int IdCadeteAnterior, int NroPedido, int IdCadeteNuevo){
-            Pedidos PedidoTemporal = new Pedidos();
-            foreach (var Cadete in ListadoCadetes)
-            {
-                if (Cadete.Id == IdCadeteAnterior)
-                {
-                    foreach (var pedido in Cadete.ListadoPedidosCadete)
-                    {
-                        if (pedido.Nro == NroPedido)
-                        {
-                            PedidoTemporal = pedido;
-                            System.Console.WriteLine(PedidoTemporal.Cliente?.Nombre);
-                        }
-                    }
-                    Cadete.ListadoPedidosCadete.Remove(PedidoTemporal);
-                }
-            }
-            foreach (var Cadete in ListadoCadetes)
-            {
-                if (Cadete.Id == IdCadeteNuevo)
-                {
-                    Cadete.ListadoPedidosCadete.Add(PedidoTemporal);
+                    Pedido.Estado = Estados.Entregado;
                 }
             }
         }
 
-        public void InformePedidosDeJornada(){
+        public void ReasignarPedido(int NroPedido, int IdCadeteNuevo){
+            foreach (Pedidos Pedido in ListadoPedidos)
+            {
+                if (Pedido.Nro == NroPedido)
+                    Pedido.IdCadete = IdCadeteNuevo;
+            }
+        }
+
+        /* public void InformePedidosDeJornada(){
             foreach (var cadete in listadoCadetes)
             {
                 System.Console.WriteLine($"{cadete.Nombre}: {cadete.JornalACobrar()}");

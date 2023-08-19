@@ -27,14 +27,6 @@ using Practico1;
                 break;
             }
             
-            /* foreach (var Cadeteria in ListaCadeteria)
-            {
-                foreach (var Cadete in Cadeteria.ListadoCadetes)
-                {
-                    System.Console.WriteLine(Cadete.Nombre);
-                }
-            } */
-            
 
             //System.Console.WriteLine(${NuevaCadeteria.ListadoCadetes[0].Nombre});
 
@@ -52,8 +44,6 @@ using Practico1;
                 {
                     case 1:
                         System.Console.WriteLine("\n*****DAR DE ALTA PEDIDO*****");
-                        System.Console.WriteLine("Ingrese el Id del cadete: ");
-                        int IdCadete = Convert.ToInt32(Console.ReadLine());
                         System.Console.WriteLine("Ingrese el numero de pedido:");
                         int NroPedido = Convert.ToInt32(Console.ReadLine());
                         System.Console.WriteLine("Ingrese la observacion del pedido:");
@@ -71,23 +61,19 @@ using Practico1;
                     break;
                     case 2:
                         System.Console.WriteLine("*****CAMBIAR ESTADO DE PEDIDO*****");
-                        System.Console.WriteLine("Ingrese el Id del cadete:");
-                        IdCadete = Convert.ToInt32(Console.ReadLine());
                         System.Console.WriteLine("Ingrese el numero de pedido:");
                         NroPedido = Convert.ToInt32(Console.ReadLine());
-                        NuevaCadeteria.CambiarEstadoDePedido(IdCadete, NroPedido);
+                        NuevaCadeteria.CambiarEstadoDePedido(NroPedido);
                         System.Console.WriteLine("*****FIN CAMBIAR ESTADO DE PEDIDO*****\n");
 
                     break;
                     case 3:
                         System.Console.WriteLine("*****REASIGNAR PEDIDO*****");
-                        System.Console.WriteLine("Ingrese el Id del cadete con el pedido a reasignar:");
-                        int IdCadeteAnterior = Convert.ToInt32(Console.ReadLine());
                         System.Console.WriteLine("Ingrese el numero de pedido a reasignar:");
                         NroPedido = Convert.ToInt32(Console.ReadLine());
                         System.Console.WriteLine("Ingrese el Id del nuevo cadete:");
                         int IdCadeteNuevo = Convert.ToInt32(Console.ReadLine());
-                        NuevaCadeteria.ReasignarPedido(IdCadeteAnterior, NroPedido, IdCadeteNuevo);
+                        NuevaCadeteria.ReasignarPedido(NroPedido, IdCadeteNuevo);
                         System.Console.WriteLine($"Nombre Cliente en nuevo cadete: {NuevaCadeteria.ListadoCadetes[1].ListadoPedidosCadete[0].Cliente?.Nombre}");
                     break;
                 }

@@ -1,11 +1,13 @@
-public enum Estados
-{
-    Asignado,
-    Entregado
-}
+
 
 namespace Practico1
 {
+    public enum Estados
+    {
+        Asignado,
+        Entregado
+    };
+
     public class Pedidos
     {
         private int? nro;
@@ -24,11 +26,11 @@ namespace Practico1
             
         }
 
-        public Pedidos(int Nro, string? Obs)
+        public Pedidos(int Nro, string? Obs, Cliente NuevoCliente)
         {
             this.Nro = Nro;
             this.Obs = Obs;
-            this.Estado = Estados.Asignado;
+            this.Cliente = NuevoCliente;
         }
 
         public void CrearPedidoEnPedidos(Pedidos NuevoPedido, string? NombreCliente, string? DireccionCliente, string? TelefonoCliente, string? DatosReferenciaDireccionCliente){

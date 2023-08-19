@@ -40,9 +40,6 @@ namespace Practico1
     {
         public override Cadeteria CargarDatosCadeteria()
         {
-            //List<Cadeteria>? ListaDeserealizada;
-
-            string[]? StringCadeteria;
             Cadeteria NuevaCadeteria;
             string StringADeserealizar;
             using(var ArchivoOpen = new FileStream("DatosCadeteria.json", FileMode.Open)){
@@ -50,15 +47,13 @@ namespace Practico1
                     StringADeserealizar = strReader.ReadToEnd();
                     ArchivoOpen.Close();
                 }
-                StringCadeteria = JsonSerializer.Deserialize<string[]>(StringADeserealizar); 
+                NuevaCadeteria = JsonSerializer.Deserialize<Cadeteria>(StringADeserealizar); 
             }
-                NuevaCadeteria = new Cadeteria(StringCadeteria);
-                return NuevaCadeteria;
-                //return ListaDeserealizada;
+            return NuevaCadeteria;
         }
 
         public override List<Cadete> CargarDatosCadete(){
-            List<Cadete>? ListaDeserealizada;
+            List<Cadete> ListaDeserealizada;
             string StringADeserealizar;
             using (var ArchivoOpen = new FileStream("DatosCadetes.json", FileMode.Open))
             {
@@ -69,7 +64,7 @@ namespace Practico1
                 }
                 ListaDeserealizada = JsonSerializer.Deserialize<List<Cadete>>(StringADeserealizar);
             }
-            return (ListaDeserealizada);
+            return ListaDeserealizada;
         }
     }    
 }

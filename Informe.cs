@@ -6,6 +6,12 @@ public class Informe{
     public List<InformeCadete> InformeCadetes {get;set;}= new List<InformeCadete>();
 }
 public class InformeCadete{
-    public string Nombre;
-    public double monto;
+    private string nombre;
+    private double monto;
+
+    public string Nombre { get => nombre; set => nombre = value; }
+    public double Monto { get => monto; set => monto = value; }
+
+    public InformeCadete(){
+    }
 }

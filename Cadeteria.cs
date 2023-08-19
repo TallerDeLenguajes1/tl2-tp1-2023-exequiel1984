@@ -99,11 +99,13 @@ namespace Practico1
             }
         }
 
-        /* public void InformePedidosDeJornada(){
-            foreach (var cadete in listadoCadetes)
+        public Informe InformePedidosDeJornada(){
+            var informe = new Informe();
+            foreach (Cadete cadete in ListadoCadetes)
             {
-                System.Console.WriteLine($"{cadete.Nombre}: {cadete.JornalACobrar()}");
+               informe.TotalMontos.Add(JornalACobrar(cadete.Id));
+               informe.EnviosPromedio.Add(JornalACobrar(cadete.Id)); 
             }
-        } */
+        }
     }
 }

@@ -1,6 +1,6 @@
 namespace Practico1
 {
-    public class Cadete
+    public class Cadete : Persona
     {
         private List<Pedidos> listadoPedidosCadete = new List<Pedidos>();
 

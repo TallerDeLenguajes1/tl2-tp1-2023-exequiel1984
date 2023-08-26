@@ -2,9 +2,9 @@ namespace Practico1
 {
     public class Cliente : Persona
     {
-        private string datosReferenciaDireccion;
+        private string? datosReferenciaDireccion;
 
-        public string DatosReferenciaDireccion { get => datosReferenciaDireccion; set => datosReferenciaDireccion = value; }
+        public string? DatosReferenciaDireccion { get => datosReferenciaDireccion; set => datosReferenciaDireccion = value; }
 
         public Cliente(int idCliente, string nombreCliente, string direccionCliente, string telefonoCliente, string datosReferenciaDireccionCliente)
         {
@@ -14,5 +14,7 @@ namespace Practico1
             this.Telefono = telefonoCliente;
             this.DatosReferenciaDireccion = datosReferenciaDireccionCliente;
         }
+
+        
     }
 }

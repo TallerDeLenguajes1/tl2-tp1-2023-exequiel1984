@@ -15,6 +15,8 @@ namespace Practico1
             this.DatosReferenciaDireccion = datosReferenciaDireccionCliente;
         }
 
-        
+        public void cargarDatosCliente(){
+            
+        }
     }
 }

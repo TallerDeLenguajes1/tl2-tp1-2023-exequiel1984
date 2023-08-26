@@ -6,6 +6,7 @@ namespace Practico1
         private string nombre;
         private string direccion;
         private string telefono;
+        private string 
 
     }
 }

@@ -11,15 +11,21 @@ namespace Practico1
     {
         static void Main(string[] args)
         {
-            CargarDatos CargaDatos = new CargarDatos();
             
-            Cadeteria NuevaCadeteria = CargaDatos.CargarDatosCadeteria();
-            CargaDatos.CargarDatosCadete(NuevaCadeteria.ListadoCadetes);
+            CargarDatos CargarDatos = new CargarDatos();
+            Cadeteria NuevaCadeteria = CargarDatos.CargarDatosCadeteria();
+
+            AccesoADatos CargarDatosCadetes = new AccesoCSV();
+            NuevaCadeteria.ListadoCadetes = CargarDatosCadetes.CargarDatosCadete();
+
+            System.Console.WriteLine($"{NuevaCadeteria.Nombre}");
+            System.Console.WriteLine($"{NuevaCadeteria.ListadoCadetes[0].Nombre}");
+            //CargaDatos.CargarDatosCadete(NuevaCadeteria.ListadoCadetes);
 
 
-            NuevaCadeteria.AltaDePedidos();
+            //NuevaCadeteria.AltaDePedidos();
 
-            NuevaCadeteria.CambiarEstadoDePedido();
+            //NuevaCadeteria.CambiarEstadoDePedido();
 
         }
     }

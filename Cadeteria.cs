@@ -16,6 +16,8 @@ namespace Practico1
             this.Telefono = Telefono;
         }
 
+        
+
         public void AltaDePedidos(){
             System.Console.WriteLine("*****DAR DE ALTA PEDIDO*****");
             System.Console.WriteLine("Ingrese el Id del cadete: ");

@@ -26,7 +26,9 @@ namespace Practico1
             int NroPedido = Convert.ToInt32(Console.ReadLine());
             System.Console.WriteLine("Ingrese la observacion del pedido:");
             string? ObsPedido = Console.ReadLine();
+            
             Pedidos NuevoPedido = new Pedidos(NroPedido, ObsPedido);
+            
             listadoPedidosCadete.Add(NuevoPedido);
             NuevoPedido.CrearPedidoEnPedidos(NuevoPedido);
         }

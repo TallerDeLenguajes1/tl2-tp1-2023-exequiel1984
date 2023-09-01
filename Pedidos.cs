@@ -13,6 +13,8 @@ namespace Practico1
         private Cliente? cliente;
         private Estados estado;
 
+        private int? IdPedido;
+
         public int? Nro { get => nro; set => nro = value; }
         public string? Obs { get => obs; set => obs = value; }
         public Cliente? Cliente { get => cliente; set => cliente = value; }

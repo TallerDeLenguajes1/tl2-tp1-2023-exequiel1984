@@ -1,12 +1,7 @@
-﻿
-using System.IO;
+﻿using System.IO;
 using System.Collections;
-
-
 using Practico1;
 
-namespace Practico1
-{
     public class Program
     {
         static void Main(string[] args)
@@ -81,4 +76,3 @@ namespace Practico1
             NuevaCadeteria.InformePedidosDeJornada();
         }
     }
-}

@@ -35,8 +35,8 @@ namespace Practico1
             NuevoPedido.Cliente = NuevoCliente;
         }
 
-        public void VerDireccionCliente(){
-            System.Console.WriteLine($"Direccion cliente: {Cliente?.Direccion}");
+        public string? VerDireccionCliente(){
+            return Cliente?.Direccion;
         }
 
         public void VerDatosCliente(){

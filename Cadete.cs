@@ -19,16 +19,29 @@ namespace Practico1
             this.Nombre = DatosCadete[1];
             this.Direccion = DatosCadete[2];
             this.Telefono = DatosCadete[3];
+            List<Pedidos> ListadoPedidosCadete = new List<Pedidos>();
         }
 
-        public void CrearPedidoEnCadete(){
-            System.Console.WriteLine("Ingrese el numero de pedido:");
-            int NroPedido = Convert.ToInt32(Console.ReadLine());
-            System.Console.WriteLine("Ingrese la observacion del pedido:");
-            string? ObsPedido = Console.ReadLine();
+        public void CrearPedidoEnCadete(int NroPedido, string? ObsPedido, string? NombreCliente, string? DireccionCliente, string? TelefonoCliente, string? DatosReferenciaDireccionCliente){
+            
             Pedidos NuevoPedido = new Pedidos(NroPedido, ObsPedido);
             listadoPedidosCadete.Add(NuevoPedido);
-            NuevoPedido.CrearPedidoEnPedidos(NuevoPedido);
+            NuevoPedido.CrearPedidoEnPedidos(NuevoPedido, NombreCliente, DireccionCliente, TelefonoCliente, DatosReferenciaDireccionCliente);
+        }
+
+        public float JornalACobrar(){
+            int CantidadDePedidosEntregados = 0;
+            float MontoPorPedido = 500;
+            float Total;
+            foreach (Pedidos Pedido in ListadoPedidosCadete)
+            {
+                if (Pedido.Estado == Estados.Entregado)
+                {
+                    CantidadDePedidosEntregados++;
+                }
+            }
+            Total = CantidadDePedidosEntregados * MontoPorPedido;
+            return Total;
         }
     }
 }

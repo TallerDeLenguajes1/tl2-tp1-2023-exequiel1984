@@ -1,3 +1,5 @@
+using System.Data.Common;
+
 namespace Practico1
 {
     public class Cadeteria
@@ -14,20 +16,15 @@ namespace Practico1
         {
             this.Nombre = Nombre;
             this.Telefono = Telefono;
+            List<Cadete> ListadoCadetes = new List<Cadete>();
         }
 
-        
-
-        public void AltaDePedidos(){
-            System.Console.WriteLine("*****DAR DE ALTA PEDIDO*****");
-            System.Console.WriteLine("Ingrese el Id del cadete: ");
-            int IdCadeteSeleccionado = Convert.ToInt32(Console.ReadLine());
-
+        public void AltaDePedidos(int IdCadete, int NroPedido, string? ObsPedido, string? NombreCliente, string? DireccionCliente, string? TelefonoCliente, string? DatosReferenciaDireccionCliente){
             foreach (Cadete cadete in ListadoCadetes)
             {
-                if (cadete.Id == IdCadeteSeleccionado)
+                if (cadete.Id == IdCadete)
                 {
-                    cadete.CrearPedidoEnCadete();
+                    cadete.CrearPedidoEnCadete(NroPedido, ObsPedido, NombreCliente, DireccionCliente, TelefonoCliente, DatosReferenciaDireccionCliente);
                 }
             }
         }
@@ -58,14 +55,7 @@ namespace Practico1
             }
         } */
 
-        public void CambiarEstadoDePedido(){
-            System.Console.WriteLine("*****CAMBIAR ESTADO DE PEDIDO*****");
-            System.Console.WriteLine("Ingrese el Id del cadete:");
-            int IdCadete = Convert.ToInt32(Console.ReadLine());
-            System.Console.WriteLine("Ingrese el numero de pedido:");
-            int NroPedido = Convert.ToInt32(Console.ReadLine());
-
-
+        public void CambiarEstadoDePedido(int IdCadete, int NroPedido){
             foreach (var Cadete in ListadoCadetes)
             {
                 if (Cadete.Id == IdCadete)
@@ -74,23 +64,15 @@ namespace Practico1
                     {
                         if (pedido.Nro == NroPedido)
                         {
-                            System.Console.WriteLine($"Estado anterior: {pedido.Estado}");
                             pedido.Estado = Estados.Entregado;
-                            System.Console.WriteLine($"Nuevo estado: {pedido.Estado}");
                         }
                     }
                 }
             }
         }
 
-        public void ReasignarPedido(){
-            System.Console.WriteLine("*****REASIGNAR PEDIDO*****");
-            System.Console.WriteLine("Ingrese el Id del cadete con el pedido a reasignar:");
-            int IdCadeteAnterior = Convert.ToInt32(Console.ReadLine());
-            System.Console.WriteLine("Ingrese el numero de pedido a reasignar:");
-            int NroPedido = Convert.ToInt32(Console.ReadLine());
-            System.Console.WriteLine("Ingrese el Id del nuevo cadete:");
-            int IdCadeteNuevo = Convert.ToInt32(Console.ReadLine());
+        public void ReasignarPedido(int IdCadeteAnterior, int NroPedido, int IdCadeteNuevo){
+            Pedidos PedidoTemporal = new Pedidos();
             foreach (var Cadete in ListadoCadetes)
             {
                 if (Cadete.Id == IdCadeteAnterior)
@@ -99,15 +81,27 @@ namespace Practico1
                     {
                         if (pedido.Nro == NroPedido)
                         {
-                            //System.Console.WriteLine($"Estado anterior: {pedido.Estado}");
-                            Cadete.ListadoPedidosCadete.Remove(pedido);
-                            //System.Console.WriteLine($"Nuevo estado: {pedido.Estado}");
+                            PedidoTemporal = pedido;
+                            System.Console.WriteLine(PedidoTemporal.Cliente?.Nombre);
                         }
                     }
+                    Cadete.ListadoPedidosCadete.Remove(PedidoTemporal);
                 }
             }
-            
-            
+            foreach (var Cadete in ListadoCadetes)
+            {
+                if (Cadete.Id == IdCadeteNuevo)
+                {
+                    Cadete.ListadoPedidosCadete.Add(PedidoTemporal);
+                }
+            }
+        }
+
+        public void InformePedidosDeJornada(){
+            foreach (var cadete in listadoCadetes)
+            {
+                System.Console.WriteLine($"{cadete.Nombre}: {cadete.JornalACobrar()}");
+            }
         }
     }
 }

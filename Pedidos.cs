@@ -13,12 +13,14 @@ namespace Practico1
         private Cliente? cliente;
         private Estados estado;
 
-        private int? IdPedido;
-
         public int? Nro { get => nro; set => nro = value; }
         public string? Obs { get => obs; set => obs = value; }
         public Cliente? Cliente { get => cliente; set => cliente = value; }
         public Estados Estado { get => estado; set => estado = value; }
+
+        public Pedidos(){
+            
+        }
 
         public Pedidos(int Nro, string? Obs)
         {
@@ -27,18 +29,22 @@ namespace Practico1
             this.Estado = Estados.Asignado;
         }
 
-        public void CrearPedidoEnPedidos(Pedidos NuevoPedido){
-            System.Console.WriteLine("*****CARGAR DATOS DEL CLIENTE*****");
-            System.Console.WriteLine("Ingrese el nombre:");
-            string? NombreCliente = Console.ReadLine();
-            System.Console.WriteLine("Ingrese la direccion:");
-            string? DireccionCliente = Console.ReadLine();
-            System.Console.WriteLine("Ingrese el telefono:");
-            string? TelefonoCliente = Console.ReadLine();
-            System.Console.WriteLine("Ingrese los datos de referencia de la direccion:");
-            string? DatosReferenciaDireccionCliente = Console.ReadLine(); 
-        
+        public void CrearPedidoEnPedidos(Pedidos NuevoPedido, string? NombreCliente, string? DireccionCliente, string? TelefonoCliente, string? DatosReferenciaDireccionCliente){
+
             Cliente NuevoCliente = new Cliente(NombreCliente, DireccionCliente, TelefonoCliente, DatosReferenciaDireccionCliente);
+            NuevoPedido.Cliente = NuevoCliente;
+        }
+
+        public string? VerDireccionCliente(){
+            return Cliente?.Direccion;
+        }
+
+        public void VerDatosCliente(){
+            System.Console.WriteLine("*****DATOS DEL CLIENTE*****");
+            System.Console.WriteLine($"Nombre: {Cliente?.Nombre}");
+            System.Console.WriteLine($"Direccion: {Cliente?.Direccion}");
+            System.Console.WriteLine($"Telefono: {Cliente?.Telefono}");
+            System.Console.WriteLine($"Datod de referencia de la direccion: {Cliente?.DatosReferenciaDireccion}");
         }
     }
 }

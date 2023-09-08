@@ -6,30 +6,31 @@ namespace Practico1
         private string? nombre;
         private string? direccion;
         private string? telefono;
-        private List<Pedidos> listadoPedidosCadete = new List<Pedidos>();
 
         public int Id { get => id; set => id = value; }
         public string? Nombre { get => nombre; set => nombre = value; }
         public string? Direccion { get => direccion; set => direccion = value; }
         public string? Telefono { get => telefono; set => telefono = value; }
-        public List<Pedidos> ListadoPedidosCadete { get => listadoPedidosCadete; set => listadoPedidosCadete = value; }
 
         public Cadete(string[] DatosCadete){
             this.Id = Convert.ToInt32(DatosCadete[0]);
             this.Nombre = DatosCadete[1];
             this.Direccion = DatosCadete[2];
             this.Telefono = DatosCadete[3];
-            List<Pedidos> ListadoPedidosCadete = new List<Pedidos>();
         }
 
-        public void CrearPedidoEnCadete(int NroPedido, string? ObsPedido, string? NombreCliente, string? DireccionCliente, string? TelefonoCliente, string? DatosReferenciaDireccionCliente){
+        public Cadete(int Id, string Nombre, string Direccion, string Telefono){
+            this.Id = Id;
+            this.Nombre = Nombre;
+            this.Direccion = Direccion;
+            this.Telefono = Telefono;
+        }
+
+        public void CrearPedidoEnCadete(){
             
-            Pedidos NuevoPedido = new Pedidos(NroPedido, ObsPedido);
-            listadoPedidosCadete.Add(NuevoPedido);
-            NuevoPedido.CrearPedidoEnPedidos(NuevoPedido, NombreCliente, DireccionCliente, TelefonoCliente, DatosReferenciaDireccionCliente);
         }
 
-        public float JornalACobrar(){
+        /* public float JornalACobrar(){
             int CantidadDePedidosEntregados = 0;
             float MontoPorPedido = 500;
             float Total;
@@ -42,6 +43,6 @@ namespace Practico1
             }
             Total = CantidadDePedidosEntregados * MontoPorPedido;
             return Total;
-        }
+        } */
     }
 }

@@ -6,12 +6,39 @@ using Practico1;
     {
         static void Main(string[] args)
         {
-            CargarDatos CargaDatos = new CargarDatos();
-            
-            Cadeteria NuevaCadeteria = CargaDatos.CargarDatosCadeteria();
-            CargaDatos.CargarDatosCadete(NuevaCadeteria.ListadoCadetes);
-
+            Cadeteria NuevaCadeteria;
             System.Console.WriteLine("*****INTERFAZ USUARIO*****");
+            System.Console.WriteLine("CARGA DE DATOS DE CADETERIA Y CADETES DESDE ARCHIVO:");
+            System.Console.WriteLine("1 Para cargar datos desde CSV");
+            System.Console.WriteLine("2 Para cargar datos desde JSON");
+            int IdCargaDatos = Convert.ToInt32(Console.ReadLine());
+            switch (IdCargaDatos)
+            {
+                case 1:
+                    AccesoADatos CargarDatosCSV = new AccesoCSV();
+                    NuevaCadeteria = CargarDatosCSV.CargarDatosCadeteria();
+                    NuevaCadeteria.ListadoCadetes = CargarDatosCSV.CargarDatosCadete();
+                break;
+                case 2:
+                    AccesoADatos CargarDatosJSON = new AccesoJSON();
+                    NuevaCadeteria = CargarDatosJSON.CargarDatosCadeteria();
+                    System.Console.WriteLine(NuevaCadeteria.Nombre);
+                    NuevaCadeteria.ListadoCadetes = CargarDatosJSON.CargarDatosCadete();
+                break;
+            }
+            
+            /* foreach (var Cadeteria in ListaCadeteria)
+            {
+                foreach (var Cadete in Cadeteria.ListadoCadetes)
+                {
+                    System.Console.WriteLine(Cadete.Nombre);
+                }
+            } */
+            
+
+            //System.Console.WriteLine(${NuevaCadeteria.ListadoCadetes[0].Nombre});
+
+            /* System.Console.WriteLine("*****INTERFAZ USUARIO*****");
             System.Console.WriteLine("1 Dar de alta pedido");
             System.Console.WriteLine("2 Cambiar de estado");
             System.Console.WriteLine("3 Reasignar pedido a otro cadete");
@@ -73,6 +100,6 @@ using Practico1;
                 IdOperacion = Convert.ToInt32(Console.ReadLine());
             }
             System.Console.WriteLine("*****INFORME PEDIDOS DE JORNADA*****");
-            NuevaCadeteria.InformePedidosDeJornada();
+            NuevaCadeteria.InformePedidosDeJornada(); */
         }
     }

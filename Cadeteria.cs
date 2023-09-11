@@ -4,31 +4,31 @@ namespace Practico1
 {
     public class Cadeteria
     {
-        private string? nombre;
-        private string? telefono;
-        private List<Cadete>? listadoCadetes;
-        private List<Pedidos>? ListadoPedidos;
+        private string nombre;
+        private string telefono;
+        private List<Cadete> listadoCadetes;
+        private List<Pedidos> ListadoPedidos;
 
-        public string? Nombre { get => nombre; set => nombre = value; }
-        public string? Telefono { get => telefono; set => telefono = value; }
-        public List<Cadete>? ListadoCadetes { get => listadoCadetes; set => listadoCadetes = value; }
+        public string Nombre { get => nombre; set => nombre = value; }
+        public string Telefono { get => telefono; set => telefono = value; }
+        public List<Cadete> ListadoCadetes { get => listadoCadetes; set => listadoCadetes = value; }
 
-        public Cadeteria(string? Nombre, string? Telefono)
+        public Cadeteria(string Nombre, string Telefono)
         {
             this.Nombre = Nombre;
             this.Telefono = Telefono;
-            List<Cadete> ListadoCadetes = new List<Cadete>();
-            List<Pedidos> ListadoPedidos = new List<Pedidos>();
+            this.ListadoCadetes = new List<Cadete>();
+            this.ListadoPedidos = new List<Pedidos>();
         }
        
         private void AgregarPedido(Pedidos NuevoPedido){
-            ListadoPedidos?.Add(NuevoPedido);
+            ListadoPedidos.Add(NuevoPedido);
         }
 
-        public void AltaDePedidos(int NroPedido, string? ObsPedido, string? NombreCliente, string? DireccionCliente, string? TelefonoCliente, string? DatosReferenciaDireccionCliente){
+        public void AltaDePedidos(int NroPedido, string ObsPedido, string NombreCliente, string DireccionCliente, string TelefonoCliente, string DatosReferenciaDireccionCliente){
             Cliente NuevoCliente = new Cliente(NombreCliente, DireccionCliente, TelefonoCliente, DatosReferenciaDireccionCliente);   
             Pedidos NuevoPedido = new Pedidos(NroPedido, ObsPedido, NuevoCliente);
-            ListadoPedidos?.Add(NuevoPedido);
+            AgregarPedido(NuevoPedido);
         }
 
         public void AsignarCadeteAPedido(int IdCadete, int IdPedido){
@@ -43,17 +43,7 @@ namespace Practico1
             
         }
 
-        public float JornalACobrar(int IdCadete){
-            float montoACobrar = 0;
-            foreach (Pedidos Pedido in ListadoPedidos)
-            {   
-                if (Pedido.IdCadete == IdCadete && Pedido.Estado == Estados.Entregado)
-                {
-                    montoACobrar+=500;
-                }
-            }
-            return montoACobrar;
-        }
+        
 
         /* private Pedidos? BuscarPedido(){
             System.Console.WriteLine("Ingrese el Id del cadete:");
@@ -99,6 +89,17 @@ namespace Practico1
             }
         }
 
+        public float JornalACobrar(int IdCadete){
+            float montoACobrar = 0;
+            foreach (Pedidos Pedido in ListadoPedidos)
+            {   
+                if (Pedido.IdCadete == IdCadete && Pedido.Estado == Estados.Entregado)
+                {
+                    montoACobrar+=500;
+                }
+            }
+            return montoACobrar;
+        }
         public Informe InformePedidosDeJornada(){
             var informe = new Informe();
 

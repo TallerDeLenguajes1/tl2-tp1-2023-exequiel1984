@@ -29,24 +29,5 @@ namespace Practico1
             this.Direccion = Direccion;
             this.Telefono = Telefono;
         }
-
-        public void CrearPedidoEnCadete(){
-            
-        }
-
-        /* public float JornalACobrar(){
-            int CantidadDePedidosEntregados = 0;
-            float MontoPorPedido = 500;
-            float Total;
-            foreach (Pedidos Pedido in ListadoPedidosCadete)
-            {
-                if (Pedido.Estado == Estados.Entregado)
-                {
-                    CantidadDePedidosEntregados++;
-                }
-            }
-            Total = CantidadDePedidosEntregados * MontoPorPedido;
-            return Total;
-        } */
     }
 }

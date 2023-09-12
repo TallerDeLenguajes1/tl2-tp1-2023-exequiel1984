@@ -23,10 +23,6 @@ namespace Practico1
         public Estados Estado { get => estado; set => estado = value; }
         public int IdCadete { get => idCadete; set => idCadete = value; }
 
-        /* public Pedidos(){
-            
-        } */
-
         public Pedidos(int Nro, string Obs, Cliente NuevoCliente)
         {
             this.Nro = Nro;

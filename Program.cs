@@ -111,7 +111,5 @@ using Practico1;
             {
                 System.Console.WriteLine($"{infoCadete.Nombre} {infoCadete.Monto}");
             }
-            
-            
         }
     }

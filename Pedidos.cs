@@ -35,12 +35,12 @@ namespace Practico1
             return Cliente.Direccion;
         }
 
-        public void VerDatosCliente(){
+        /* public void VerDatosCliente(){
             System.Console.WriteLine("*****DATOS DEL CLIENTE*****");
             System.Console.WriteLine($"Nombre: {Cliente?.Nombre}");
             System.Console.WriteLine($"Direccion: {Cliente?.Direccion}");
             System.Console.WriteLine($"Telefono: {Cliente?.Telefono}");
             System.Console.WriteLine($"Datod de referencia de la direccion: {Cliente?.DatosReferenciaDireccion}");
-        }
+        } */
     }
 }
